@@ -1,0 +1,23 @@
+service: hello-skill
+
+
+plugins:
+  - serverless-python-requirements
+
+custom:
+  pythonRequirements:
+    dockerizePip: non-linux
+
+provider:
+  name: aws
+  runtime: python3.6
+
+package:
+  include:
+    - hello_skill/**
+
+functions:
+  hello:
+    handler: hello_skill/hello_world.handler
+    events:
+      - alexaSkill: amzn1.ask.skill.dc8c210a-ac2e-496a-b150-93e7aee3d0fe
